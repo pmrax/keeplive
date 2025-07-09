@@ -2,7 +2,7 @@ name: Render Pinger
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Every 10 minutes
+    - cron: '*/10 * * * *'  # Every 10 minutes
   workflow_dispatch:        # Optional: Manual trigger
 
 jobs:
@@ -14,9 +14,11 @@ jobs:
         run: echo "This is a test ping at $(date)"
 
       - name: Ping App 1
-        run: curl -s https://connectsphere-ud6f.onrender.com/
+        run: |
+          echo "Pinging ConnectSphere UD6F..."
+          curl -v https://connectsphere-ud6f.onrender.com/
 
       - name: Ping App 2
-        run: curl -s https://connectsphere-official.onrender.com/
-
-        
+        run: |
+          echo "Pinging ConnectSphere Official..."
+          curl -v https://connectsphere-official.onrender.com/
